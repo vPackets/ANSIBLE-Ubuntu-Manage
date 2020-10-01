@@ -1,0 +1,28 @@
+- name: Ubuntu Update cache - Upgrade packages and reboot (if necessary)
+  hosts: ubuntu-lab-all
+  become: true
+  serial: 41 # one host at a time
+  any_errors_fatal: true
+  max_fail_percentage: 0
+ 
+  tasks: # tasks are done in order
+    - name: Update apt-get cache (apt-get update)
+      apt:
+        update-cache: yes
+
+
+    - name: Upgrade all packages to the latest version (apt-get upgrade)
+      apt:
+        name: "*"
+        state: latest  
+
+    - name: apt-get upgrade (distribution upgrade)
+      apt:
+        upgrade: yes
+        force_apt_get: yes
+
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+
+

@@ -1,0 +1,21 @@
+- name: upgrade packages and reboot (if necessary)
+  hosts: ubuntu-lab-all
+  become: true
+  #serial: 1 # one host at a time
+  any_errors_fatal: true
+  max_fail_percentage: 0
+  vars:
+      package: netcat
+      packages: [ 'vim', 'curl', 'tshark' ] # Method deprecated in 2.11. TO be removed.
+
+      
+  tasks: # tasks are done in order
+    - name: Install the packages 
+      apt:
+        name: vim, netcat, curl, tshark, unzip, iperf3, iftop, hping3, zsh, powerline, fonts-powerline
+    #- name: Install the package "Netcat"
+    #  apt: name={{ package }} state=latest
+    #- name: Install the packages notified in the Array
+    #  apt: name={{ item }} state=latest
+    #  with_items: "{{ packages }}"
+
