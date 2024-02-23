@@ -6,7 +6,7 @@ _**This disclaimer informs readers that the views, thoughts, and opinions expres
 
 ## Description
 
-Multiple playbooks that will perform basic function on Ubuntu (tested with 18.04.3 and 22.04 LTS) : Install package - Install Docker - Reboot and Update.
+Multiple playbooks that will perform basic function on Ubuntu (tested with 18.04.3) : Install package - Install Docker - Reboot and Update.
 
 ## Requirements
 * Python (≥ 2.6)
@@ -16,55 +16,17 @@ Multiple playbooks that will perform basic function on Ubuntu (tested with 18.04
 ## Configuration files:
 
 ```
-├── Readme.md
-├── hosts.ini
-├── reboot.yml
-├── ubuntu18.04
-│   ├── README.md
-│   ├── docker-stop-test-container.yaml
-│   ├── docker-sudo.yaml
-│   ├── install-docker.yaml
-│   ├── install-package.yaml
-│   ├── reboot.yaml
-│   └── update.yaml
-└── update_upgrade_playbook.yml
+├── README.md
+├── complete-deployment.yaml
+├── docker-stop-test-container.yaml
+├── docker-sudo.yaml
+├── install-docker.yaml
+├── install-package.yaml
+├── reboot.yaml
+└── update.yaml
 ```
 
-## Generalities
-
-For this particular playbook I have copied my ssh keys to the remote server.
-
-- Generate the ssh keys
-```
-ssh-keygen -t ed25519 -C "email@email.com"
-```
-
-- Copy the SSH keys to the remote servers
-
-```
-ssh-copy-id user@server
-```
-
-Also this repo contains an example of the hosts.ini configuration that could be used for this playbook. Make sure to rename the hosts-example.ini into hosts.ini and modify that file to reflect your servers IP address and credentials.
-
-## Playbook execution:for ubuntu 22.04
-
-### Step 1: Update Ubuntu on Ubuntu Virtual machines
-
-This playbook will also upgrade containerlab
-
-```
-ansible-playbook -i hosts.ini update_upgrade_playbook.yml --ask-become-pass
-```
-
-### Step 2: Reboot
-
-```
-ansible-playbook -i hosts.ini reboot.yml --ask-become-pass 
-```
-
-
-## Playbook execution:for ubuntu 18.04
+## Playbook execution:
 
 ### Step 1: Update Ubuntu on Ubuntu Virtual machines
 

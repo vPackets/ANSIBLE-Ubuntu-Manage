@@ -1,0 +1,18 @@
+---
+- name: Update and Upgrade Ubuntu Servers
+  hosts: ubuntu_servers_blv
+  become: yes
+  tasks:
+    - name: Update apt repo
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upgrade all packages to the latest version
+      ansible.builtin.apt:
+        upgrade: dist
+
+    - name: Upgrade Containerlab on specific hosts
+      ansible.builtin.command: sudo clab version upgrade
+      when: upgrade_containerlab|default(false)|bool
+
