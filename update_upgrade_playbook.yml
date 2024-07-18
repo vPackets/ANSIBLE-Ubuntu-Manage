@@ -16,3 +16,4 @@
       ansible.builtin.command: sudo clab version upgrade
       when: upgrade_containerlab|default(false)|bool
 
+# ansible-playbook -i hosts.ini update_upgrade_playbook.yml --ask-become-pas
