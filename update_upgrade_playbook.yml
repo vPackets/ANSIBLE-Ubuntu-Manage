@@ -1,6 +1,6 @@
 ---
 - name: Update and Upgrade Ubuntu Servers
-  hosts: ubuntu_servers_rtp
+  hosts: ubuntu_servers_blv
   become: yes
   tasks:
     - name: Update apt repo

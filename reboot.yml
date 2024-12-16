@@ -1,6 +1,6 @@
 ---
 - name: Reboot Ubuntu Servers
-  hosts: ubuntu_servers_rtp
+  hosts: ubuntu_servers_blv
   become: true
   tasks:
     - name: Reboot the server
