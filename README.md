@@ -8,6 +8,8 @@ _**This disclaimer informs readers that the views, thoughts, and opinions expres
 
 Multiple playbooks that will perform basic function on Ubuntu (tested with 18.04.3 and 22.04 LTS) : Install package - Install Docker - Reboot and Update.
 
+Git Repository: https://github.com/vPackets/ANSIBLE-Ubuntu-Manage
+
 ## Requirements
 * Python (≥ 2.6)
 * Ansible
