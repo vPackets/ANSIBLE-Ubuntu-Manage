@@ -16,4 +16,35 @@
       ansible.builtin.command: sudo clab version upgrade
       when: upgrade_containerlab|default(false)|bool
 
+- name: Update and Upgrade Rocky Linux Servers
+  hosts: rocky_servers_rtp
+  become: yes
+  tasks:
+    - name: Update all packages
+      ansible.builtin.dnf:
+        name: '*'
+        state: latest
+
+    - name: Upgrade Containerlab on specific hosts
+      ansible.builtin.command: sudo clab version upgrade
+      when: upgrade_containerlab | default(false) | bool
+
+
+
+- name: Update and Upgrade FreeBSD Servers
+  hosts: freebsd_servers_rtp
+  become: yes
+  tasks:
+    - name: Update pkg database
+      ansible.builtin.command: pkg update -f
+
+    - name: Upgrade installed packages
+      ansible.builtin.command: pkg upgrade -y
+
+    - name: Upgrade Containerlab on specific hosts
+      ansible.builtin.command: clab version upgrade
+      when: upgrade_containerlab | default(false) | bool
+
+
+
 # ansible-playbook -i hosts.ini update_upgrade_playbook.yml --ask-become-pas
